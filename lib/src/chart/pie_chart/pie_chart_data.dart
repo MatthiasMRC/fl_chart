@@ -175,6 +175,17 @@ class PieChartSectionBorder with EquatableMixin {
         left = BorderSide.none,
         right = BorderSide.none;
 
+  /// Creates a "smart" border that avoids doubled borders between adjacent sections.
+  ///
+  /// This shows borders on outer arc, inner arc, and right side only.
+  /// Since each section only draws its right border, adjacent sections
+  /// won't have overlapping borders (section A's right = section B's left).
+  const PieChartSectionBorder.smart(BorderSide side)
+      : outer = side,
+        inner = side,
+        left = BorderSide.none,
+        right = side;
+
   /// The border on the outer arc (furthest from center).
   final BorderSide outer;
 
